@@ -11,6 +11,8 @@ extern TFT_eSprite canvas;
 extern float smoothNumber;
 extern float targetNumber;
 extern bool isOverheating;
+extern String gaugeStatus;
+extern bool isTesting;
 
 const float easing = 0.08; 
 const int myStart = 45;                
@@ -50,7 +52,11 @@ void drawGaugeUpdate() {
 
   // Текст
   canvas.setTextColor(TFT_WHITE, 0x04FF);
-  canvas.drawNumber((int)smoothNumber, 65, 75, 4);
+  canvas.drawNumber((int)targetNumber, 65, 75, 4);
+  if (isTesting) {
+    canvas.setTextColor(TFT_WHITE, 0x04FF);
+        canvas.drawString(gaugeStatus, 0, 75, 4);
+  }
 
   canvas.pushSprite(0, 0);
 }
